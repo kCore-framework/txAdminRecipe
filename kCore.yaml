@@ -1,0 +1,66 @@
+$engine: 3
+$onesync: on
+name: kCore
+version: 2.2.4
+author: Kypos
+description: A next-generation FiveM roleplay framework built by the community for the community https://kco.re
+
+tasks:
+  #  Download Base Files
+  - action: download_github
+    src: https://github.com/kCore-framework/txAdminRecipe
+    ref: main
+    dest: ./tmp/kCore
+
+  - action: move_path
+    src: ./tmp/kCore/server.cfg
+    dest: ./server.cfg
+
+  - action: move_path
+    src: ./tmp/kCore/servericon.png
+    dest: ./servericon.png
+
+  # Prepare Database
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/kCore/core.sql
+
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    subpath: resources
+    dest: ./resources/[cfx-default]
+  - action: remove_path
+    path: ./resources/[cfx-default]/[gameplay]/chat
+
+  # Required Resources
+  - action: download_file
+    path: ./tmp/files/oxmysql.zip
+    url: https://github.com/overextended/oxmysql/releases/download/v2.11.2/oxmysql.zip
+  - action: unzip
+    dest: ./resources/[standalone]
+    src: ./tmp/files/oxmysql.zip
+
+  - action: download_github
+    dest: ./resources/[standalone]/bob74_ipl
+    ref: master
+    src: https://github.com/kCore-framework/bob74_ipl
+
+  - action: download_github
+    dest: ./resources/[voice]/pma-voice
+    ref: main
+    src: https://github.com/AvarianKnight/pma-voice
+
+  - action: download_github
+    dest: ./resources/[Core]/kMulticharacter
+    ref: main
+    src: https://github.com/kCore-framework/kMulticharacter
+
+  # Downloading kCore resources
+  - action: download_github
+    dest: ./resources/[Core]/kCore
+    ref: main
+    src: https://github.com/kCore-framework/kCore
+
+  # Clean up
+  - action: remove_path
+    path: ./tmp
