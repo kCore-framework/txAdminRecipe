@@ -35,7 +35,7 @@ tasks:
   # Required Resources
   - action: download_file
     path: ./tmp/files/oxmysql.zip
-    url: https://github.com/overextended/oxmysql/releases/download/v2.11.2/oxmysql.zip
+    url: https://github.com/overextended/oxmysql/releases/download/v2.13.0/oxmysql.zip
   - action: unzip
     dest: ./resources/[standalone]
     src: ./tmp/files/oxmysql.zip
@@ -43,7 +43,7 @@ tasks:
   - action: download_github
     dest: ./resources/[standalone]/bob74_ipl
     ref: master
-    src: https://github.com/kCore-framework/bob74_ipl
+    src: https://github.com/Bob74/bob74_ipl
 
   - action: download_github
     dest: ./resources/[voice]/pma-voice
